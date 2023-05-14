@@ -1,0 +1,39 @@
+{% load static %}
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <link rel="stylesheet" href=" {% static 'css/style.css' %}">
+    <script src="{% static 'js/script.js' %}" defer></script>
+    <script src="{% static 'js/jQuery.js' %}" ></script>
+    
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <a href="{% url 'cart' %}">Кошик</a>
+    {% for product in products %}
+        <form method="post" action="{% url 'catalog' %}">
+            
+            {% csrf_token %}
+            
+            <img src="{{ product.image.url }}">
+            <p>{{ product.name }}</p>
+            <p>{{ product.description }}</p>
+            <p>{{ product.price }}</p>
+
+            <input type="button" class="button-minus" value="-">
+
+            <span class="count">1</span>
+
+            <input type="button" class="button-plus" value="+">
+
+            <button type="submit" class='button-send button' value="{{ product.pk }}">Додати</button>
+
+        </form>
+    
+    {% endfor %}
+
+    
+</body>
+</html>
