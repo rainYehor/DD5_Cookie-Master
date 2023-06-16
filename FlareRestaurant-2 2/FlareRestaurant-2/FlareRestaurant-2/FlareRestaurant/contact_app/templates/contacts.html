@@ -1,0 +1,18 @@
+{% extends 'base/base.html' %}
+{% load static %}
+{% block style %}{% endblock %}
+{% block title %}Контаки{% endblock %}
+
+
+{% block content %}
+    <div class="content">
+        {% for contact in all_contacts %}
+        <div class="contact">
+            <img src="{{ contact.image.url }}" alt="wtf, bro" width="300px">
+            <h2>{{ contact.name }}</h2>
+            <h2>{{ contact.post }}</h2>
+            <h2>+{{ contact.phone_number }}</h2>
+        </div>
+        {% endfor %}
+    </div>
+{% endblock %}

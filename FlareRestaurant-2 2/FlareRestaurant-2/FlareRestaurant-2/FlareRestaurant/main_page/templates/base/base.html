@@ -1,0 +1,51 @@
+{% load static %}
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="{% static 'css/base.css' %}">
+    <link href="https://fonts.googleapis.com/css2?family=Marck+Script&display=swap" rel="stylesheet">
+    {% block js %} {% endblock %}
+    {% block style %} {% endblock %}
+    <title>{% block title %} {% endblock %}</title>
+</head>
+<body>
+    <header>
+        <div class="align-left-h header">
+
+            <a href="{% url 'main' %}">
+                <div class="align-left-h">
+                    <div class="icon">
+                        <img src="{% static 'img/logo.png' %}" alt="img not found", width="94" height="94px">
+                    </div>
+                    <div class="name">
+                        Flare
+                    </div>
+                </div>
+            </a>
+            
+            <div class="align-center-h header_nav_menu">
+                <a href="{% url 'menu' %}">Меню</a>
+                <a href="{% url 'contacts' %}">Контакти</a>
+                
+                {% if user.is_authenticated %}
+                    <a href="/profile">{{user.first_name}}</a>
+                    <a href="/cart"><img src="{% static 'img/cart.png' %}" alt="img not found", height="66px"></a>
+                {% else %}
+                    <a href="/login">Увійти</a>
+                    <a href="/login"><img src="{% static 'img/cart.png' %}" alt="img not found", height="66px"></a>
+                {% endif %}
+
+                
+
+                
+                <!-- <a href="{% url 'cart' %}"><img src="{% static 'img/cart.png' %}" alt="img not found", height="66px"></a> -->
+                <button><img src="{% static 'img/flag_ua.png' %}" alt="img not found", height="35px"></button>
+            </div>
+
+        </div>
+    </header>
+    <main>{% block content %} {% endblock %}</main>
+</body>
+</html>
