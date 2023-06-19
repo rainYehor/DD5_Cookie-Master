@@ -1,0 +1,22 @@
+{% extends 'base/base.html' %}
+{% load static %}
+{% block style %} <link rel="stylesheet" href="{% static 'css/order.css' %}"> {% endblock %}
+{% block title %}Оформлення заказу{% endblock %}
+
+
+{% block content %}
+    <div class="content-order">
+        <div class="left-receipt">
+            <h1>Оформлення заказу</h1>
+            {% for text_receipt in products_in_cart %}
+                <div class="solo-product">
+                    <p>{{text_receipt.product.name}} <b>x{{text_receipt.count}}</b></p>
+                </div>
+            {% endfor %}
+        </div>
+        <div class="final-price">
+            <h2 class="price">Загальна ціна: <span class="total-price">{{ full_price }}</span>грн</h2>
+            <a href="{% url 'order_processing' %}"><input class="go-to-order" type="submit" name="order" value="Перейти до Оформлення"></a>
+        </div>
+    </div>
+{% endblock %}
